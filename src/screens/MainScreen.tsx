@@ -3,7 +3,7 @@
 import {Picker} from '@react-native-picker/picker';
 import CleverTap from 'clevertap-react-native';
 import React, {useEffect, useState} from 'react';
-import {Button, TextInput, View} from 'react-native';
+import {Button, StyleSheet, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import CleverTapService from '../services/CleverTapService';
 import {addStuff, clearStuff, setSelectedFunction} from '../store/action';
@@ -78,8 +78,9 @@ const MainScreen: React.FC = () => {
         console.log('No function selected');
     }
   };
+
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput placeholder="Name" value={name} onChangeText={setName} />
       <TextInput
         placeholder="Identity"
@@ -106,5 +107,11 @@ const MainScreen: React.FC = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+});
 
 export default MainScreen;
