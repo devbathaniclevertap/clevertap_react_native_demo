@@ -1,4 +1,4 @@
-package com.react_native_clevertap_demo
+package com.clevertap.demo
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
