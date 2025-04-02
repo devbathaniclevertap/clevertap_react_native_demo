@@ -37,6 +37,7 @@ const MainScreen: React.FC = () => {
 
   useEffect(() => {
     try {
+      CleverTap.setDebugLevel(3);
       CleverTap.getCleverTapID((err, res) => {
         if (err) {
           console.error('Error getting CleverTap ID:', err);

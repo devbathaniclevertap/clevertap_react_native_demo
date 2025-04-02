@@ -3,14 +3,14 @@
 import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
 import MainScreen from './screens/MainScreen';
-import FirebaseService from './services/FirebaseService';
+// import FirebaseService from './services/FirebaseService';
+
 import {store} from './store/store';
 
 const App: React.FC = () => {
   useEffect(() => {
-    FirebaseService.requestPermission();
-    FirebaseService.getToken();
-    FirebaseService.setupFCMListeners();
+    // FirebaseService.requestNotificationPermission();
+    // FirebaseService.getToken();
   }, []);
   return (
     <Provider store={store}>

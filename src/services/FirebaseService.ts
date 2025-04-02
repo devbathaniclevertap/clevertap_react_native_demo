@@ -1,42 +1,29 @@
 import messaging from '@react-native-firebase/messaging';
-import {Alert} from 'react-native';
-
 class FirebaseService {
-  async requestPermission() {
+  // Request notification permissions
+  static async requestNotificationPermission() {
     const authStatus = await messaging().requestPermission();
     const enabled =
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log('FCM Permission Granted');
+      console.log('Notification permission granted.');
+    } else {
+      console.log('Notification permission denied.');
     }
   }
 
-  async getToken() {
-    const token = await messaging().getToken();
-    console.log('FCM Token:', token);
-  }
-
-  async setupFCMListeners() {
-    messaging().onMessage(async remoteMessage => {
-      Alert.alert('New FCM Message', JSON.stringify(remoteMessage));
-      console.log('FCM Foreground Message:', remoteMessage);
-    });
-
-    messaging().setBackgroundMessageHandler(async remoteMessage => {
-      console.log('FCM Background Message:', remoteMessage);
-    });
-
-    messaging().onNotificationOpenedApp(remoteMessage => {
-      console.log('FCM Notification Opened:', remoteMessage);
-    });
-
-    const initialNotification = await messaging().getInitialNotification();
-    if (initialNotification) {
-      console.log('FCM Initial Notification:', initialNotification);
+  // Get FCM Token
+  static async getToken() {
+    try {
+      const token = await messaging().getToken();
+      console.log('FCM Token:', token);
+      return token;
+    } catch (error) {
+      console.error('Error fetching FCM token:', error);
     }
   }
 }
 
-export default new FirebaseService();
+export default FirebaseService;

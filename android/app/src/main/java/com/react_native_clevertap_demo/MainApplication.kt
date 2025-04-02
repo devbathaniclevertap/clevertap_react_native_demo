@@ -1,4 +1,4 @@
-package com.clevertap.demo
+package com.reactnative.clevertap
 
 import android.app.Application
 import android.app.Activity
